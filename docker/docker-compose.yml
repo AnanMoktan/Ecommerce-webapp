@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  sportscenter-redis:
+    image: "redis:latest"
+    container_name: "sports-center-redis-container"
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - sports-center-redis-data:/data
+  redis_insight:
+    image: redislabs/redisinsight:1.14.0
+    container_name: redis_insight
+    restart: always
+    ports:
+      - 8002:8002
+    volumes:
+      - redis_insight_volume_data:/db
+volumes:
+  sports-center-redis-data:
+  redis_insight_volume_data:
